@@ -1,4 +1,4 @@
-# APP NAME
+# fullstack-brain-bucket
 > short app tagline
 
 ### authorship + version
