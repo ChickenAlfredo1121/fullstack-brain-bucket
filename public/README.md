@@ -67,6 +67,6 @@ repo/
 
 ### GCP
 
-external IP: `00.00.00.00`\
-Linux user: `username`\
+external IP: `35.238.228.90`\
+Linux user: `havandervort`\
 instructor SSH public key installed: `yes`
