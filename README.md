@@ -27,4 +27,10 @@ reference this [gist](https://gist.github.com/barrycumbie/36fff4083f20439615e1ed
 │   └── auth.html
 └── README.md
 ```
+### pm2 help
 
+to start pm2:
+
+```bash
+pm2 start app.js
+```
