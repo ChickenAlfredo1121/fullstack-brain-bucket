@@ -29,7 +29,9 @@ reference this [gist](https://gist.github.com/barrycumbie/36fff4083f20439615e1ed
 ```
 ### pm2 help
 
-to start pm2:
+to start pm2 (be in app/server):
+  - run it where the app is
+
 
 ```bash
 pm2 start app.js
