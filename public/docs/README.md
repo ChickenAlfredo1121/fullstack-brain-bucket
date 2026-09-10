@@ -10,13 +10,18 @@
   resource                     link
   ---------------------------- ----------------------
   PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main)
-  PROD server                  [GCP](URL)
+  PROD server                  [GCP]([URL](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server))
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
-  docs                         [`docs/`](URL)
-  published docs               [GitHub Pages](URL)
-  CI/CD workflow               [`deploy.yml`](URL)
-  successful PROD deployment   [GitHub Action](URL)
+  docs                         [`docs/`]([URL](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/public/docs))
+  published docs               [GitHub Pages](URL) 
+
+  this is the pages deployment (above)
+  CI/CD workflow               [`deploy.yml`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml)
+  successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34515030305)
+
+  when this does work (above)
+
   resolved GOLF issue          [issue \#](URL)
 
 ### user story
