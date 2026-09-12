@@ -13,7 +13,7 @@
   PROD server                  [GCP]([URL](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server))
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
-  docs                         [`docs/`]([URL](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/public/docs))
+  docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
   published docs               [GitHub Pages](URL) 
 
   this is the pages deployment (above)
