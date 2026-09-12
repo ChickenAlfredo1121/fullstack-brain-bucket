@@ -1,36 +1,24 @@
 # fullstack-brain-bucket
-> short app tagline
+> full-stack deployment practice
 
 ### authorship + version
 
-`@ChickenAlfredo1121` \| `2026-09-08` \| `GOLF`
+`@ChickenAlfredo1121` \| `2026-09-12` \| `GOLF`
 
 ### deployments, codebase, & repo features 
 
   resource                     link
   ---------------------------- ----------------------
   PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main)
-
-> I see that it said GCP, does that mean you want branch or the URL of the VM Instance?
-
   PROD server                  [GCP](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server)
-
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
   docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
   published docs               [GitHub Pages](https://chickenalfredo1121.github.io/fullstack-brain-bucket/)
   CI/CD workflow               [`deploy.yml`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml)
   successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34699848553)
-
-
-
-
-  >I couldn't find the instructions on this and think I may be doing this wrong.
-  
-  resolved GOLF issue          [issue \#](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/iss01)
+  resolved GOLF issue          [issue \#](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/1)
 ### user story
-
-> Was this meant to be altered?
 
 - **As a** burgeoning full-stack developer,
 - **I want** a CI/CD infrastructure
@@ -61,8 +49,6 @@ GitHub
 `GCP` \| `Linux` \| `Nginx` \| `PM2` \| `Certbot` \| `GitHub Actions`
 
 ### project structure
-
-> Did I overwrite this or is this correct?
 
 
 ``` text
