@@ -39,11 +39,8 @@
 
 ### narrative
 
-In 2--4 sentences, briefly describe your GOLF infrastructure and what you built/deployed.
-GOLF is a development environment used to deploy a website that can be accessed locally and over the cloud. The goal is to be able to make changes and it be able to be seen in a number of ways. This includes the server itself, GitHub pages, Render, and through YAML. The infrastructure is based on a GCP server that uses nginx to publish the website and Render which publishes the project through the repo.
 
-
-GOLF is a....
+GOLF is a practice exercise using a full-stack deployment process across multiple environments to host a web-based project. The codebase has two branches that provide the automation used by the environments. The dev branch deploys to Render, and main deploys to the GCP VM through GitHub Actions.
 
 ### architecture
 
