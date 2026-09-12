@@ -10,16 +10,27 @@
   resource                     link
   ---------------------------- ----------------------
   PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main)
-  PROD server                  [GCP]([URL](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server))
+
+> I see that it said GCP, does that mean you want branch or the URL of the VM Instance?
+
+  PROD server                  [GCP](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server)
+
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
   docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
   published docs               [GitHub Pages](https://chickenalfredo1121.github.io/fullstack-brain-bucket/)
   CI/CD workflow               [`deploy.yml`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml)
   successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34699848553)
-  resolved GOLF issue          [issue \#](URL)
 
+
+
+
+  >I couldn't find the instructions on this and think I may be doing this wrong.
+  
+  resolved GOLF issue          [issue \#](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/iss01)
 ### user story
+
+> Was this meant to be altered?
 
 - **As a** burgeoning full-stack developer,
 - **I want** a CI/CD infrastructure
@@ -28,8 +39,11 @@
 
 ### narrative
 
-In 2--4 sentences, briefly describe your GOLF infrastructure and whatyou built/deployed.
+In 2--4 sentences, briefly describe your GOLF infrastructure and what you built/deployed.
+GOLF is a development environment used to deploy a website that can be accessed locally and over the cloud. The goal is to be able to make changes and it be able to be seen in a number of ways. This includes the server itself, GitHub pages, Render, and through YAML. The infrastructure is based on a GCP server that uses nginx to publish the website and Render which publishes the project through the repo.
 
+
+GOLF is a....
 
 ### architecture
 
@@ -51,16 +65,45 @@ GitHub
 
 ### project structure
 
-Use `tree` to show your actual project structure.
+> Did i overwrite this or is this correct?
+
 
 ``` text
 repo/
 ├── .github/
 │   └── workflows/
+|     └── deploy-main-to-gcp.yml
 ├── docs/
 │   └── README.md
 ├── public/
+|   └── assets/
+|     └── css/
+|       └── style.css
+|     └── data/
+|       └── ideas.json
+|     └── js
+|       └── admin.js
+|       └── auth-guard.js
+|       └── auth.js
+|       └── content.js
+|       └── form.js
+|       └── main.js
+|   └── config/
+|       └── AGENTS.md
+|       └── CHARLIE.md
+|       └── CLAUDE.md
+|   └── docs/
+|     └── README.md
+|   └── pages/
+|       └── admin.html
+|       └── auth.html
+|       └── content.html
+|       └── form.html
+|   └── index.html
 ├── server/
+|   └── app.js
+|   └── package-lock.json
+|   └── package.json
 ├── .gitignore
 └── ...
 ```
