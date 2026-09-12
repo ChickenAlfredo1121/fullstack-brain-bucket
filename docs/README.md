@@ -62,7 +62,7 @@ GitHub
 
 ### project structure
 
-> Did i overwrite this or is this correct?
+> Did I overwrite this or is this correct?
 
 
 ``` text
