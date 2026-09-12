@@ -14,14 +14,9 @@
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
   docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
-  published docs               [GitHub Pages](URL) 
-
-  this is the pages deployment (above)
+  published docs               [GitHub Pages](https://chickenalfredo1121.github.io/fullstack-brain-bucket/)
   CI/CD workflow               [`deploy.yml`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml)
-  successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34515030305)
-
-  when this does work (above)
-
+  successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34699848553)
   resolved GOLF issue          [issue \#](URL)
 
 ### user story
