@@ -9,8 +9,8 @@
 
   resource                     link
   ---------------------------- ----------------------
-  PROD codebase                [`main`](https://junior.barrycumbie.com/pages/auth.html)
-  PROD server                  [GCP](http://35.238.228.90)
+  PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket)
+  PROD server                  [GCP](https://junior.barrycumbie.com/pages/auth.html)
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
   docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
