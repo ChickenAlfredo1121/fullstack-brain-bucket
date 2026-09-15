@@ -9,8 +9,8 @@
 
   resource                     link
   ---------------------------- ----------------------
-  PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main)
-  PROD server                  [GCP](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/server)
+  PROD codebase                [`main`](https://junior.barrycumbie.com/pages/auth.html)
+  PROD server                  [GCP](http://35.238.228.90)
   DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
   DEV server                   [Render](https://fullstack-practice2.onrender.com)
   docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
@@ -52,43 +52,38 @@ GitHub
 
 
 ``` text
-repo/
-├── .github/
-│   └── workflows/
-|     └── deploy-main-to-gcp.yml
-├── docs/
+fullstack-brain-bucket
+├── docs
 │   └── README.md
-├── public/
-|   └── assets/
-|     └── css/
-|       └── style.css
-|     └── data/
-|       └── ideas.json
-|     └── js
-|       └── admin.js
-|       └── auth-guard.js
-|       └── auth.js
-|       └── content.js
-|       └── form.js
-|       └── main.js
-|   └── config/
-|       └── AGENTS.md
-|       └── CHARLIE.md
-|       └── CLAUDE.md
-|   └── docs/
-|     └── README.md
-|   └── pages/
-|       └── admin.html
-|       └── auth.html
-|       └── content.html
-|       └── form.html
-|   └── index.html
-├── server/
-|   └── app.js
-|   └── package-lock.json
-|   └── package.json
-├── .gitignore
-└── ...
+├── public
+│   ├── assets
+│   │   ├── css
+│   │   │   └── style.css
+│   │   ├── data
+│   │   │   └── ideas.json
+│   │   └── js
+│   │       ├── admin.js
+│   │       ├── auth-guard.js
+│   │       ├── auth.js
+│   │       ├── content.js
+│   │       ├── form.js
+│   │       └── main.js
+│   ├── config
+│   │   ├── AGENTS.md
+│   │   ├── CHARLIE.md
+│   │   └── CLAUDE.md
+│   ├── docs
+│   │   └── README.md
+│   ├── index.html
+│   └── pages
+│       ├── admin.html
+│       ├── auth.html
+│       ├── content.html
+│       └── form.html
+└── server
+    ├── app.js
+    ├── package-lock.json
+    └── package.json
 ```
 
 ### GCP
