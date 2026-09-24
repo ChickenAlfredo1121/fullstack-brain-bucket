@@ -9,12 +9,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const uri = process.env.MONGO_URI;
 const app = express();
-const client = new MongoClient(uri, {
+const client = new MongoClient(uri, {});
+
+app.use(express.json());
 
 
-
-
-});
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -24,7 +23,7 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
     
     //------------------------------------
-    app.use(express.json());
+
     app.get('/', (req, res) => {
       res.sendFile(join(__dirname, '../public', 'hotel.html'));
 

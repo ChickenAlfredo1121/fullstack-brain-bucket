@@ -17,11 +17,12 @@
 
   <pre id="output"></pre>
 
-  <script>
 
-    <button id="sendData">
+  <button id="sendData">
       send data
     </button>
+  <script>
+
 
     document
       .querySelector('#getData')
@@ -30,7 +31,7 @@
         getData
       );
 
-    document.querySelector('postData').addEventListener('click', sendData);
+    
     async function getData() {
 
 
@@ -60,6 +61,8 @@
   </script>
 
   <script>
+
+    document.querySelector('#sendData').addEventListener('click', sendData);
     async function sendData() {
 
       const student = {
