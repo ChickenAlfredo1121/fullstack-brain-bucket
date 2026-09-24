@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import 'dotenv/config';
 import express from 'express'
-import {MongoClient, ServerApiVersion} from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,11 +22,15 @@ async function run() {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    
+    //------------------------------------
+    app.use(express.json());
+    app.get('/', (req, res) => {
+      res.sendFile(join(__dirname, '../public', 'hotel.html'));
 
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, '../public', 'hotel.html'));
+    })
 
-})
+    //-------------------------------
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
@@ -35,12 +39,31 @@ app.get('/', (req, res) => {
 run().catch(console.dir);
 
 
-app.get('/api/hello', function(req, res) {
-    const message = {
-      message : 'hello from hard code json',
-      success : true
-    };
-    res.json(message);
+app.get('/api/hello', function (req, res) {
+  const message = {
+    message: 'hello from hard code json',
+    success: true
+  };
+  res.json(message);
+
+}
+);
+
+
+app.post(
+  '/api/students',
+  function (req, res) {
+
+    console.log(
+      req.body
+    );
+
+    res.json({
+
+      received:
+        req.body
+
+    });
 
   }
 );

@@ -1,10 +1,12 @@
 <!doctype html>
 <html>
+
 <head>
   <title>
     hotel #
   </title>
 </head>
+
 <body>
   <h1>
     client → server
@@ -17,6 +19,10 @@
 
   <script>
 
+    <button id="sendData">
+      send data
+    </button>
+
     document
       .querySelector('#getData')
       .addEventListener(
@@ -24,8 +30,14 @@
         getData
       );
 
+    document.querySelector('postData').addEventListener('click', sendData);
     async function getData() {
 
+
+      const student = {
+        name: 'Lasagna',
+        major: 'CIS'
+      };
       const response =
         await fetch(
           '/api/hello'
@@ -37,16 +49,48 @@
       document
         .querySelector('#output')
         .textContent =
-          JSON.stringify(
-            data,
-            null,
-            2
-          );
+        JSON.stringify(
+          data,
+          null,
+          2
+        );
 
     }
 
   </script>
 
+  <script>
+    async function sendData() {
+
+      const student = {
+        name: 'Lasagna',
+        major: 'CIS'
+      };
+
+      const response =
+        await fetch(
+          '/api/students',
+          {
+            method:
+              'POST',
+            headers: {
+              'Content-Type':
+                'application/json'
+            },
+            body:
+              JSON.stringify(
+                student
+              )
+          }
+        );
+
+      const data =
+        await response.json();
+
+      console.log(data);
+
+    }
+  </script>
 </body>
 
 </html>
