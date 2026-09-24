@@ -1,11 +1,16 @@
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import 'dotenv/config';
 import express from 'express'
 import {MongoClient, ServerApiVersion} from 'mongodb';
-// const uri = "mongodb+srv://<JohnSmith>:<Jack1101>@cluster0.sm7l3lx.mongodb.net/?appName=Cluster0";
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const uri = process.env.MONGO_URI;
 const app = express();
 const client = new MongoClient(uri, {
+
 
 
 
@@ -17,6 +22,11 @@ async function run() {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, '../public', 'hotel.html'));
+
+})
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
