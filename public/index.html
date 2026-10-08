@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokédex cards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef2ec;
+      --panel: #f6f8f4;
+      --ink: #173a34;
+      --muted: #7d8a84;
+      --line: #d9e0d9;
+      --accent: #d9482b;
+      --dark: #1f4a43;
+      --card: #fbfcf8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', system-ui, sans-serif;
+    }
+
+    .layout {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 32px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ---------- sidebar ---------- */
+    #sidebar {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .eyebrow { font-size: 11px; letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
+    #sidebar h1 { font-size: 24px; font-weight: 500; margin: 8px 0 20px; }
+    .op { border-top: 1px solid var(--line); padding: 16px 0; }
+    .op h2 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+    .op p { font-size: 12px; color: var(--muted); margin: 0 0 10px; }
+    .op input {
+      width: 100%; height: 36px; padding: 0 12px; margin-bottom: 8px;
+      border: 1px solid var(--line); border-radius: 8px; background: #fff;
+      font: inherit; font-size: 13px; color: var(--ink);
+    }
+    .op input:focus, button:focus-visible { outline: 2px solid var(--dark); outline-offset: 2px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .btn {
+      width: 100%; height: 36px; border-radius: 8px; border: 1px solid var(--line);
+      background: #e4ece6; color: var(--ink); font: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+    }
+    .btn:hover { background: #d8e3db; }
+    .btn.danger { background: #f7e4df; color: #8e2b17; }
+    .btn.danger:hover { background: #f1d3cb; }
+    #getAll {
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
+      background: none; border: 0; border-top: 1px solid var(--line); padding: 16px 0 0;
+      font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer;
+    }
+    #count { background: #dfe8e1; border-radius: 99px; padding: 3px 10px; font-size: 12px; font-weight: 500; }
+
+    /* ---------- main ---------- */
+    .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; }
+    .head h1 { font-size: 24px; font-weight: 500; margin: 6px 0 0; }
+    #message { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    #message::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    #message:empty { display: none; }
+
+    #grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { --tint: #e8ece8; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .card-top {
+      background: var(--tint); padding: 0 16px; height: 42px;
+      display: flex; align-items: center;
+      font-size: 12px; font-weight: 600;
+    }
+    .card-body { padding: 16px 18px 14px; }
+    .name-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .name-row h3 { margin: 0; font-size: 17px; font-weight: 500; }
+    .hp { font-size: 15px; font-weight: 600; }
+    .hp small { font-size: 9px; color: var(--muted); font-weight: 500; }
+    .types { display: flex; gap: 6px; margin: 10px 0 12px; }
+    .type { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; background: var(--tint); font-weight: 500; }
+    .id {
+      display: block; width: 100%; text-align: left; border: 0; border-top: 1px solid var(--line);
+      background: none; padding: 10px 0 0; font: inherit; font-size: 10px; color: var(--muted);
+      font-family: ui-monospace, Consolas, monospace; cursor: copy; overflow: hidden; text-overflow: ellipsis;
+    }
+    .id:hover { color: var(--ink); }
+    #empty { color: var(--muted); font-size: 14px; padding: 40px 0; }
+
+    /* type tints (unknown categories fall back to the grey above) */
+    .grass { --tint: #dcebe1; } .fire { --tint: #fde3cf; } .water { --tint: #d9eef5; }
+    .electric { --tint: #f8ecc0; } .ghost, .poison, .psychic { --tint: #e6dff0; }
+    .normal { --tint: #efe3d3; } .bug { --tint: #e3ecc8; } .flying { --tint: #dfe6f5; }
+    .ground, .rock { --tint: #eadfc9; } .ice { --tint: #d8f0f0; } .fighting { --tint: #f3d9d4; }
+    .dragon { --tint: #dcdcf5; } .steel { --tint: #e0e4e8; } .fairy { --tint: #f7dfea; }
+
+    @media (max-width: 1000px) { #grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 720px) {
+      .layout { grid-template-columns: 1fr; padding: 24px 16px; }
+      #grid { grid-template-columns: 1fr; }
+      .head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- ===== sidebar: one section per operation, same order as hotel.html ===== -->
+    <aside id="sidebar">
+      <div class="eyebrow">Card operations</div>
+      <h1>Manage cards</h1>
+
+      <div id="getone" class="op">
+        <h2>Get one card</h2>
+        <p>Paste a card id (click an id on a card to copy it).</p>
+        <input id="oneId" placeholder="paste an id here">
+        <button id="getOneBtn" class="btn">Get one</button>
+      </div>
+
+      <div id="filter" class="op">
+        <h2>Filter by type</h2>
+        <p>Show only cards of one type, like grass.</p>
+        <input id="filterCategory" placeholder="grass">
+        <button id="filterBtn" class="btn">Filter</button>
+      </div>
+
+      <div id="create" class="op">
+        <h2>Create a card</h2>
+        <p>Add a new Pokémon to your collection.</p>
+        <input id="newName" placeholder="Name">
+        <input id="newCategory" placeholder="Type, e.g. grass">
+        <div class="row2">
+          <input id="newNumber" type="number" min="1" placeholder="Number">
+          <input id="newHp" type="number" min="1" placeholder="HP">
+        </div>
+        <button id="createBtn" class="btn">Create card</button>
+      </div>
+
+      <div id="update" class="op">
+        <h2>Update a card</h2>
+        <p>Fill in the id, then any field to change.</p>
+        <input id="updateId" placeholder="paste an id here">
+        <input id="updateName" placeholder="New name">
+        <input id="updateCategory" placeholder="New type">
+        <button id="updateBtn" class="btn">Update card</button>
+      </div>
+
+      <div id="delete" class="op">
+        <h2>Delete a card</h2>
+        <p>Remove one card by its id.</p>
+        <input id="deleteId" placeholder="paste an id here">
+        <button id="deleteBtn" class="btn danger">Delete card</button>
+      </div>
+
+      <div id="seed" class="op">
+        <h2>Seed starter cards</h2>
+        <p>Adds six starter Pokémon to the database.</p>
+        <button id="seedBtn" class="btn">Seed cards</button>
+      </div>
+
+      <div id="clear" class="op">
+        <h2>Delete all cards</h2>
+        <p>Empties the whole collection.</p>
+        <button id="clearBtn" class="btn danger">Delete all</button>
+      </div>
+
+      <button id="getAll"><span>Get all cards</span><span id="count">0</span></button>
+    </aside>
+
+    <!-- main area -->
+    <main>
+      <div class="head">
+        <div>
+          <div class="eyebrow">Pokédex</div>
+          <h1>Card collection</h1>
+        </div>
+        <div id="message"></div>
+      </div>
+      <div id="grid"></div>
+    </main>
+  </div>
+
+  <!-- ===== shared helpers + render + get all (iss08) ===== -->
+  <script>
+    const grid = document.querySelector('#grid');
+    const message = document.querySelector('#message');
+
+    function say(text) { message.textContent = text; }
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s == null ? '' : s;
+      return d.innerHTML;
+    }
+
+    // An id must be exactly 24 hex characters, otherwise the server's
+    // new ObjectId(...) throws. Checking here keeps a typo from crashing it.
+    function validId(id) { return /^[0-9a-f]{24}$/i.test(id); }
+
+    function render(list, total) {
+      if (total != null) document.querySelector('#count').textContent = total;
+      if (!list.length) {
+        grid.innerHTML = '<p id="empty">No cards to show. Create one, or press Get all cards.</p>';
+        return;
+      }
+      grid.innerHTML = list.map(c => {
+        const cat = String(c.category || '').toLowerCase();
+        const css = cat.replace(/[^a-z0-9]/g, '-');
+        const num = String(c.number || 0).padStart(3, '0');
+        const hp = c.hp != null ? `<span class="hp">${esc(c.hp)} <small>HP</small></span>` : '';
+        const type = cat ? `<span class="type ${css}">${esc(cat)}</span>` : '';
+        return `
+          <article class="card ${css}">
+            <div class="card-top"><span>#${num}</span></div>
+            <div class="card-body">
+              <div class="name-row"><h3>${esc(c.name)}</h3>${hp}</div>
+              <div class="types">${type}</div>
+              <button class="id" data-id="${esc(c._id)}" title="Click to copy id">${esc(c._id)}</button>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    // GET /api/items  -> every document
+    async function getAll() {
+      const response = await fetch('/api/items');
+      const data = await response.json();
+      render(data, data.length);
+      return data;
+    }
+
+    document.querySelector('#getAll').addEventListener('click', async function () {
+      document.querySelector('#filterCategory').value = '';
+      await getAll();
+      say('Showing all cards.');
+    });
+
+    // click an id on a card to copy it
+    grid.addEventListener('click', async function (e) {
+      const btn = e.target.closest('button.id');
+      if (!btn) return;
+      try {
+        await navigator.clipboard.writeText(btn.dataset.id);
+        say('Id copied.');
+      } catch (err) {
+        say('Could not copy. Select the id and copy it by hand.');
+      }
+    });
+
+    getAll().catch(() => say('Could not load cards from the server.'));
+  </script>
+
+  <!-- ===== get one (iss09): GET /api/items/:id ===== -->
+  <div id="getone-script">
+    <script>
+      document.querySelector('#getOneBtn').addEventListener('click', getOne);
+
+      async function getOne() {
+        const id = document.querySelector('#oneId').value.trim();
+        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+
+        const response = await fetch(`/api/items/${id}`);
+        const data = await response.json();   // null when nothing matches
+
+        if (!data) return say('No card has that id.');
+        render([data]);
+        say(`Showing ${data.name}.`);
+      }
+    </script>
+  </div>
+
+  <!-- ===== filter (iss10): GET /api/items?category=... ===== -->
+  <div id="filter-script">
+    <script>
+      document.querySelector('#filterBtn').addEventListener('click', getItems);
+      document.querySelector('#filterCategory').addEventListener('keydown', e => { if (e.key === 'Enter') getItems(); });
+
+      async function getItems() {
+        const category = document.querySelector('#filterCategory').value.trim().toLowerCase();
+
+        const url = `/api/items?category=${encodeURIComponent(category)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        render(data);
+        say(category ? `Showing ${data.length} ${category} card(s).` : 'Showing all cards.');
+      }
+    </script>
+  </div>
+
+  <!-- ===== create (iss11): POST /api/items ===== -->
+  <div id="create-script">
+    <script>
+      document.querySelector('#createBtn').addEventListener('click', createItem);
+
+      async function createItem() {
+        const newItem = {
+          name: document.querySelector('#newName').value.trim(),
+          category: document.querySelector('#newCategory').value.trim().toLowerCase(),
+          number: Number(document.querySelector('#newNumber').value),
+          hp: Number(document.querySelector('#newHp').value)
+        };
+
+        if (!newItem.name || !newItem.category || !newItem.number || !newItem.hp) {
+          return say('Fill in a name, type, number and HP.');
+        }
+
+        const response = await fetch('/api/items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newItem)
+        });
+        const data = await response.json();
+
+        ['#newName', '#newCategory', '#newNumber', '#newHp']
+          .forEach(id => document.querySelector(id).value = '');
+
+        await getAll();
+        say(data.acknowledged ? `${newItem.name} was added.` : 'The card was not added.');
+      }
+    </script>
+  </div>
+
+  <!-- ===== update (iss12): PATCH /api/items/:id ===== -->
+  <div id="update-script">
+    <script>
+      document.querySelector('#updateBtn').addEventListener('click', updateItem);
+
+      async function updateItem() {
+        const id = document.querySelector('#updateId').value.trim();
+        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+
+        // only send the fields that were filled in
+        const changes = {};
+        const name = document.querySelector('#updateName').value.trim();
+        const category = document.querySelector('#updateCategory').value.trim().toLowerCase();
+        if (name) changes.name = name;
+        if (category) changes.category = category;
+        if (!Object.keys(changes).length) return say('Enter a new name or a new type.');
+
+        const response = await fetch(`/api/items/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(changes)
+        });
+        const data = await response.json();
+
+        ['#updateId', '#updateName', '#updateCategory']
+          .forEach(sel => document.querySelector(sel).value = '');
+
+        await getAll();
+        say(data.matchedCount ? 'Card updated.' : 'No card has that id.');
+      }
+    </script>
+  </div>
+
+  <!-- ===== delete one (iss20): DELETE /api/items/:id ===== -->
+  <div id="delete-script">
+    <script>
+      document.querySelector('#deleteBtn').addEventListener('click', deleteItem);
+
+      async function deleteItem() {
+        const id = document.querySelector('#deleteId').value.trim();
+        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+
+        const response = await fetch(`/api/items/${id}`, { method: 'DELETE' });
+        const data = await response.json();
+
+        document.querySelector('#deleteId').value = '';
+        await getAll();
+        say(data.deletedCount ? 'Card deleted.' : 'No card has that id.');
+      }
+    </script>
+  </div>
+
+  <!-- ===== seed (iss07): POST /api/dev/seed (route must exist in mongo.js) ===== -->
+  <div id="seed-script">
+    <script>
+      document.querySelector('#seedBtn').addEventListener('click', seedDatabase);
+
+      async function seedDatabase() {
+        const response = await fetch('/api/dev/seed', { method: 'POST' });
+        if (!response.ok) return say('Seed failed. Is the /api/dev/seed route in mongo.js?');
+        const data = await response.json();
+
+        await getAll();
+        say(`${data.insertedCount} starter cards added.`);
+      }
+    </script>
+  </div>
+
+  <!-- ===== delete all (iss07): DELETE /api/dev/clear ===== -->
+  <div id="clear-script">
+    <script>
+      document.querySelector('#clearBtn').addEventListener('click', clearDatabase);
+
+      async function clearDatabase() {
+        if (!confirm('Delete every card? This cannot be undone.')) return;
+
+        const response = await fetch('/api/dev/clear', { method: 'DELETE' });
+        const data = await response.json();
+
+        await getAll();
+        say(`${data.deletedCount} card(s) deleted.`);
+      }
+    </script>
+  </div>
+
+</body>
+
+</html>
