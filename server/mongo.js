@@ -6,6 +6,8 @@ import express from 'express'
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { ObjectId } from 'mongodb';
+import dns from 'node:dns';
+dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,8 +25,8 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
-const db = client.db('index');
-const collection = db.collection('items');
+const db = client.db('hotel');
+const collection = db.collection('cards');
 
 
 
