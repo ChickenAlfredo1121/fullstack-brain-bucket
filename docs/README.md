@@ -52,6 +52,8 @@ GitHub
   ├── dev  ──► Render ─────────► DEV
   │
   └── main ──► GitHub Actions ─► GCP ──► PROD
+
+client → fetch() → Express REST API → MongoDB Atlas
 ```
 
 ### stack
