@@ -25,8 +25,8 @@
 | HOTEL milestone | [milestone](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/milestone/1) |
 | example issue | [issue #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/6) |
 | development branch | [branch](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) |
-| feature → dev | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/8) |
-| dev → main | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/9) |
+| feature → dev | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/10) |
+| dev → main | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/11) |
 | PROD deployment | [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/38272880417) |
 
 ### user story
