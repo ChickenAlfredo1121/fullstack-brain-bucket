@@ -5,7 +5,11 @@
 
 `@ChickenAlfredo1121` \| `2026-10-12` \| `HOTEL`
 
-### deployments, codebase, & repo features 
+### deployments + codebase
+|[main](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket)| PROD | [dev](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) | DEV | docs | CI/CD workflow | successful PROD deployment
+
+
+### HOTEL grading dashboard
 
 | requirement | evidence |
 |---|---|
@@ -18,12 +22,12 @@
 | DELETE | [endpoint code](URL) |
 | frontend `fetch()` | [client code](URL) |
 | persistent CRUD | [PROD app](URL) |
-| HOTEL milestone | [milestone](URL) |
+| HOTEL milestone | [milestone](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/milestone/1) |
 | example issue | [issue #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/6) |
 | development branch | [branch](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) |
 | feature → dev | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/8) |
 | dev → main | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/9) |
-| PROD deployment | [GitHub Action](URL) |
+| PROD deployment | [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/38272880417) |
 
 ### user story
 
@@ -35,7 +39,7 @@
 ### narrative
 
 
-GOLF is a practice exercise using a full-stack deployment process across multiple environments to host a web-based project. The codebase has two branches that provide the automation used by the environments. The dev branch deploys to Render, and main deploys to the GCP VM through GitHub Actions.
+HOTEL is a continuation of GOLF, a practice exercise using a full-stack deployment process across multiple environments to host a web-based project. The difference is that we are using MonogDB to do practice different HTTP methods. While also deploying custom HTML pages to demonstrate the different HTTP methods.
 
 ### architecture
 
@@ -53,7 +57,7 @@ GitHub
 ### stack
 
 `HTML/CSS/JS` \| `Node.js` \| `Express` \| `Git/GitHub` \| `Render` \|
-`GCP` \| `Linux` \| `Nginx` \| `PM2` \| `Certbot` \| `GitHub Actions`
+`GCP` \| `Linux` \| `Nginx` \| `PM2` \| `GitHub Actions` \| `MongoDB`
 
 ### project structure
 
@@ -81,14 +85,11 @@ fullstack-brain-bucket
 │   │   └── CLAUDE.md
 │   ├── docs
 │   │   └── README.md
-│   ├── index.html
-│   └── pages
-│       ├── admin.html
-│       ├── auth.html
-│       ├── content.html
-│       └── form.html
+│   ├── hotel.html
+│   └── index.html
 └── server
     ├── app.js
+    ├── mongo.js
     ├── package-lock.json
     └── package.json
 ```
