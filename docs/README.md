@@ -1,23 +1,30 @@
 # fullstack-brain-bucket
-> full-stack deployment practice
+> full-stack app deployment practice with Mongo
 
 ### authorship + version
 
-`@ChickenAlfredo1121` \| `2026-09-12` \| `GOLF`
+`@ChickenAlfredo1121` \| `2026-10-12` \| `HOTEL`
 
 ### deployments, codebase, & repo features 
 
-  resource                     link
-  ---------------------------- ----------------------
-  PROD codebase                [`main`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket)
-  PROD server                  [GCP](https://junior.barrycumbie.com/pages/auth.html)
-  DEV codebase                 [`dev`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev)
-  DEV server                   [Render](https://fullstack-practice2.onrender.com)
-  docs                         [`docs/`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs)
-  published docs               [GitHub Pages](https://chickenalfredo1121.github.io/fullstack-brain-bucket/)
-  CI/CD workflow               [`deploy.yml`](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml)
-  successful PROD deployment   [GitHub Action](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/34699848553)
-  resolved GOLF issue          [issue \#](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/1)
+| requirement | evidence |
+|---|---|
+| MongoDB connection | [server code](URL) |
+| GET all | [endpoint code](URL) |
+| GET one | [endpoint code](URL) |
+| filtered GET | [endpoint code](URL) |
+| POST / create | [endpoint code](URL) |
+| PATCH / update | [endpoint code](URL) |
+| DELETE | [endpoint code](URL) |
+| frontend `fetch()` | [client code](URL) |
+| persistent CRUD | [PROD app](URL) |
+| HOTEL milestone | [milestone](URL) |
+| example issue | [issue #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/6) |
+| development branch | [branch](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) |
+| feature → dev | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/8) |
+| dev → main | [PR #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/pull/9) |
+| PROD deployment | [GitHub Action](URL) |
+
 ### user story
 
 - **As a** burgeoning full-stack developer,
