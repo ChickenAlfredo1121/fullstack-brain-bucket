@@ -21,7 +21,7 @@
 | PATCH / update | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L317-L351) |
 | DELETE | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L353-L373) |
 | frontend `fetch()` | [client code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L227-L232) |
-| persistent CRUD | [PROD app](https://chickenalfredo1121.github.io/fullstack-brain-bucket/) |
+| persistent CRUD | [PROD app](https://fullstack-practice2.onrender.com) |
 | HOTEL milestone | [milestone](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/milestone/1) |
 | example issue | [issue #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/6) |
 | development branch | [branch](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) |
