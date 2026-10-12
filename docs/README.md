@@ -13,15 +13,15 @@
 
 | requirement | evidence |
 |---|---|
-| MongoDB connection | [server code](URL) |
-| GET all | [endpoint code](URL) |
-| GET one | [endpoint code](URL) |
-| filtered GET | [endpoint code](URL) |
-| POST / create | [endpoint code](URL) |
-| PATCH / update | [endpoint code](URL) |
-| DELETE | [endpoint code](URL) |
-| frontend `fetch()` | [client code](URL) |
-| persistent CRUD | [PROD app](URL) |
+| MongoDB connection | [server code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/server/mongo.js#L20-L29) |
+| GET all | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L219-L225) |
+| GET one | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L243-L263) |
+| filtered GET | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L265-L282) |
+| POST / create | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L284-L315) |
+| PATCH / update | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L317-L351) |
+| DELETE | [endpoint code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L353-L373) |
+| frontend `fetch()` | [client code](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/1a7b01fdb2fa331d959f2e8af2e81f151effcb29/public/index.html#L227-L232) |
+| persistent CRUD | [PROD app](https://chickenalfredo1121.github.io/fullstack-brain-bucket/) |
 | HOTEL milestone | [milestone](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/milestone/1) |
 | example issue | [issue #](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/issues/6) |
 | development branch | [branch](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) |
