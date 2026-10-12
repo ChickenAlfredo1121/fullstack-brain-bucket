@@ -39,7 +39,7 @@
       align-items: start;
     }
 
-    /* ---------- sidebar ---------- */
+    /* sidebar */
     #sidebar {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -72,7 +72,7 @@
     }
     #count { background: #dfe8e1; border-radius: 99px; padding: 3px 10px; font-size: 12px; font-weight: 500; }
 
-    /* ---------- main ---------- */
+    /* main area */
     .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; }
     .head h1 { font-size: 24px; font-weight: 500; margin: 6px 0 0; }
     #message { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
@@ -86,22 +86,16 @@
       display: flex; align-items: center;
       font-size: 12px; font-weight: 600;
     }
-    .card-body { padding: 16px 18px 14px; }
+    .card-body { padding: 16px 18px 18px; }
     .name-row { display: flex; justify-content: space-between; align-items: baseline; }
     .name-row h3 { margin: 0; font-size: 17px; font-weight: 500; }
     .hp { font-size: 15px; font-weight: 600; }
     .hp small { font-size: 9px; color: var(--muted); font-weight: 500; }
-    .types { display: flex; gap: 6px; margin: 10px 0 12px; }
+    .types { display: flex; gap: 6px; margin-top: 10px; }
     .type { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; background: var(--tint); font-weight: 500; }
-    .id {
-      display: block; width: 100%; text-align: left; border: 0; border-top: 1px solid var(--line);
-      background: none; padding: 10px 0 0; font: inherit; font-size: 10px; color: var(--muted);
-      font-family: ui-monospace, Consolas, monospace; cursor: copy; overflow: hidden; text-overflow: ellipsis;
-    }
-    .id:hover { color: var(--ink); }
     #empty { color: var(--muted); font-size: 14px; padding: 40px 0; }
 
-    /* type tints (unknown categories fall back to the grey above) */
+    /* type colors, if its unkown its grey */
     .grass { --tint: #dcebe1; } .fire { --tint: #fde3cf; } .water { --tint: #d9eef5; }
     .electric { --tint: #f8ecc0; } .ghost, .poison, .psychic { --tint: #e6dff0; }
     .normal { --tint: #efe3d3; } .bug { --tint: #e3ecc8; } .flying { --tint: #dfe6f5; }
@@ -121,15 +115,16 @@
 
   <div class="layout">
 
-    <!-- ===== sidebar: one section per operation, same order as hotel.html ===== -->
+    //this is the sidebar section
     <aside id="sidebar">
       <div class="eyebrow">Card operations</div>
       <h1>Manage cards</h1>
 
+      //all button areas
       <div id="getone" class="op">
         <h2>Get one card</h2>
-        <p>Paste a card id (click an id on a card to copy it).</p>
-        <input id="oneId" placeholder="paste an id here">
+        <p>Search by a Pokémon's name.</p>
+        <input id="oneName" placeholder="e.g. Pikachu">
         <button id="getOneBtn" class="btn">Get one</button>
       </div>
 
@@ -154,24 +149,18 @@
 
       <div id="update" class="op">
         <h2>Update a card</h2>
-        <p>Fill in the id, then any field to change.</p>
-        <input id="updateId" placeholder="paste an id here">
-        <input id="updateName" placeholder="New name">
+        <p>Enter the card's name, then any field to change.</p>
+        <input id="updateName" placeholder="Current name">
+        <input id="updateNewName" placeholder="New name">
         <input id="updateCategory" placeholder="New type">
         <button id="updateBtn" class="btn">Update card</button>
       </div>
 
       <div id="delete" class="op">
         <h2>Delete a card</h2>
-        <p>Remove one card by its id.</p>
-        <input id="deleteId" placeholder="paste an id here">
+        <p>Remove one card by its name.</p>
+        <input id="deleteName" placeholder="Name">
         <button id="deleteBtn" class="btn danger">Delete card</button>
-      </div>
-
-      <div id="seed" class="op">
-        <h2>Seed starter cards</h2>
-        <p>Adds six starter Pokémon to the database.</p>
-        <button id="seedBtn" class="btn">Seed cards</button>
       </div>
 
       <div id="clear" class="op">
@@ -196,7 +185,7 @@
     </main>
   </div>
 
-  <!-- ===== shared helpers + render + get all (iss08) ===== -->
+  <!-- all the helpers  -->
   <script>
     const grid = document.querySelector('#grid');
     const message = document.querySelector('#message');
@@ -208,10 +197,6 @@
       d.textContent = s == null ? '' : s;
       return d.innerHTML;
     }
-
-    // An id must be exactly 24 hex characters, otherwise the server's
-    // new ObjectId(...) throws. Checking here keeps a typo from crashing it.
-    function validId(id) { return /^[0-9a-f]{24}$/i.test(id); }
 
     function render(list, total) {
       if (total != null) document.querySelector('#count').textContent = total;
@@ -231,7 +216,6 @@
             <div class="card-body">
               <div class="name-row"><h3>${esc(c.name)}</h3>${hp}</div>
               <div class="types">${type}</div>
-              <button class="id" data-id="${esc(c._id)}" title="Click to copy id">${esc(c._id)}</button>
             </div>
           </article>`;
       }).join('');
@@ -245,47 +229,45 @@
       return data;
     }
 
+    //finding based on name
+    async function findByName(name) {
+      const response = await fetch('/api/items');
+      const data = await response.json();
+      return data.find(c => c.name.toLowerCase() === name.toLowerCase()) || null;
+    }
+
     document.querySelector('#getAll').addEventListener('click', async function () {
       document.querySelector('#filterCategory').value = '';
       await getAll();
       say('Showing all cards.');
     });
 
-    // click an id on a card to copy it
-    grid.addEventListener('click', async function (e) {
-      const btn = e.target.closest('button.id');
-      if (!btn) return;
-      try {
-        await navigator.clipboard.writeText(btn.dataset.id);
-        say('Id copied.');
-      } catch (err) {
-        say('Could not copy. Select the id and copy it by hand.');
-      }
-    });
-
     getAll().catch(() => say('Could not load cards from the server.'));
   </script>
 
-  <!-- ===== get one (iss09): GET /api/items/:id ===== -->
+  //get one
   <div id="getone-script">
     <script>
       document.querySelector('#getOneBtn').addEventListener('click', getOne);
+      document.querySelector('#oneName').addEventListener('keydown', e => { if (e.key === 'Enter') getOne(); });
 
       async function getOne() {
-        const id = document.querySelector('#oneId').value.trim();
-        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+        const name = document.querySelector('#oneName').value.trim();
+        if (!name) return say('Enter a Pokémon name to search.');
 
-        const response = await fetch(`/api/items/${id}`);
-        const data = await response.json();   // null when nothing matches
+        const card = await findByName(name);
+        if (!card) return say(`No card named ${name}.`);
 
-        if (!data) return say('No card has that id.');
+        const response = await fetch(`/api/items/${card._id}`);
+        const data = await response.json();
+
         render([data]);
         say(`Showing ${data.name}.`);
       }
     </script>
   </div>
 
-  <!-- ===== filter (iss10): GET /api/items?category=... ===== -->
+  //filter
   <div id="filter-script">
     <script>
       document.querySelector('#filterBtn').addEventListener('click', getItems);
@@ -304,7 +286,7 @@
     </script>
   </div>
 
-  <!-- ===== create (iss11): POST /api/items ===== -->
+  //create
   <div id="create-script">
     <script>
       document.querySelector('#createBtn').addEventListener('click', createItem);
@@ -337,75 +319,65 @@
     </script>
   </div>
 
-  <!-- ===== update (iss12): PATCH /api/items/:id ===== -->
+  //update
   <div id="update-script">
     <script>
       document.querySelector('#updateBtn').addEventListener('click', updateItem);
 
       async function updateItem() {
-        const id = document.querySelector('#updateId').value.trim();
-        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+        const current = document.querySelector('#updateName').value.trim();
+        if (!current) return say('Enter the name of the card to update.');
 
         // only send the fields that were filled in
         const changes = {};
-        const name = document.querySelector('#updateName').value.trim();
+        const newName = document.querySelector('#updateNewName').value.trim();
         const category = document.querySelector('#updateCategory').value.trim().toLowerCase();
-        if (name) changes.name = name;
+        if (newName) changes.name = newName;
         if (category) changes.category = category;
         if (!Object.keys(changes).length) return say('Enter a new name or a new type.');
 
-        const response = await fetch(`/api/items/${id}`, {
+        const card = await findByName(current);
+        if (!card) return say(`No card named ${current}.`);
+
+        const response = await fetch(`/api/items/${card._id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(changes)
         });
         const data = await response.json();
 
-        ['#updateId', '#updateName', '#updateCategory']
+        ['#updateName', '#updateNewName', '#updateCategory']
           .forEach(sel => document.querySelector(sel).value = '');
 
         await getAll();
-        say(data.matchedCount ? 'Card updated.' : 'No card has that id.');
+        say(data.matchedCount ? `${card.name} was updated.` : 'The card was not updated.');
       }
     </script>
   </div>
 
-  <!-- ===== delete one (iss20): DELETE /api/items/:id ===== -->
+  //delete one
   <div id="delete-script">
     <script>
       document.querySelector('#deleteBtn').addEventListener('click', deleteItem);
 
       async function deleteItem() {
-        const id = document.querySelector('#deleteId').value.trim();
-        if (!validId(id)) return say('That is not a valid id. Copy one from a card.');
+        const name = document.querySelector('#deleteName').value.trim();
+        if (!name) return say('Enter the name of the card to delete.');
 
-        const response = await fetch(`/api/items/${id}`, { method: 'DELETE' });
+        const card = await findByName(name);
+        if (!card) return say(`No card named ${name}.`);
+
+        const response = await fetch(`/api/items/${card._id}`, { method: 'DELETE' });
         const data = await response.json();
 
-        document.querySelector('#deleteId').value = '';
+        document.querySelector('#deleteName').value = '';
         await getAll();
-        say(data.deletedCount ? 'Card deleted.' : 'No card has that id.');
+        say(data.deletedCount ? `${card.name} was deleted.` : 'The card was not deleted.');
       }
     </script>
   </div>
 
-  <!-- ===== seed (iss07): POST /api/dev/seed (route must exist in mongo.js) ===== -->
-  <div id="seed-script">
-    <script>
-      document.querySelector('#seedBtn').addEventListener('click', seedDatabase);
-
-      async function seedDatabase() {
-        const response = await fetch('/api/dev/seed', { method: 'POST' });
-        if (!response.ok) return say('Seed failed. Is the /api/dev/seed route in mongo.js?');
-        const data = await response.json();
-
-        await getAll();
-        say(`${data.insertedCount} starter cards added.`);
-      }
-    </script>
-  </div>
-
-  <!-- ===== delete all (iss07): DELETE /api/dev/clear ===== -->
+  //delete all
   <div id="clear-script">
     <script>
       document.querySelector('#clearBtn').addEventListener('click', clearDatabase);
