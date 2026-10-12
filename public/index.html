@@ -103,11 +103,6 @@
     .dragon { --tint: #dcdcf5; } .steel { --tint: #e0e4e8; } .fairy { --tint: #f7dfea; }
 
     @media (max-width: 1000px) { #grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 720px) {
-      .layout { grid-template-columns: 1fr; padding: 24px 16px; }
-      #grid { grid-template-columns: 1fr; }
-      .head { flex-direction: column; align-items: flex-start; gap: 8px; }
-    }
   </style>
 </head>
 
@@ -115,12 +110,12 @@
 
   <div class="layout">
 
-    //this is the sidebar section
+    <!-- this is the sidebar section -->
     <aside id="sidebar">
       <div class="eyebrow">Card operations</div>
       <h1>Manage cards</h1>
 
-      //all button areas
+      <!-- all button areas -->
       <div id="getone" class="op">
         <h2>Get one card</h2>
         <p>Search by a Pokémon's name.</p>
@@ -245,7 +240,7 @@
     getAll().catch(() => say('Could not load cards from the server.'));
   </script>
 
-  //get one
+  <!-- get one -->
   <div id="getone-script">
     <script>
       document.querySelector('#getOneBtn').addEventListener('click', getOne);
@@ -267,7 +262,7 @@
     </script>
   </div>
 
-  //filter
+  <!-- filter -->
   <div id="filter-script">
     <script>
       document.querySelector('#filterBtn').addEventListener('click', getItems);
@@ -286,7 +281,7 @@
     </script>
   </div>
 
-  //create
+  <!-- create -->
   <div id="create-script">
     <script>
       document.querySelector('#createBtn').addEventListener('click', createItem);
@@ -319,7 +314,7 @@
     </script>
   </div>
 
-  //update
+  <!-- update -->
   <div id="update-script">
     <script>
       document.querySelector('#updateBtn').addEventListener('click', updateItem);
@@ -355,7 +350,7 @@
     </script>
   </div>
 
-  //delete one
+  <!-- delete one -->
   <div id="delete-script">
     <script>
       document.querySelector('#deleteBtn').addEventListener('click', deleteItem);
@@ -377,7 +372,7 @@
     </script>
   </div>
 
-  //delete all
+  <!-- delete all -->
   <div id="clear-script">
     <script>
       document.querySelector('#clearBtn').addEventListener('click', clearDatabase);
