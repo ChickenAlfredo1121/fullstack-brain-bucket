@@ -6,7 +6,7 @@
 `@ChickenAlfredo1121` \| `2026-10-12` \| `HOTEL`
 
 ### deployments + codebase
-|[main](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket)| [PROD](https://junior.barrycumbie.com/pages/auth.html) | [dev](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) | [DEV](https://fullstack-practice2.onrender.com)| [docs](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs) | [CI/CD workflow](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml) | [successful PROD deployment](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/38272880417)
+|[main](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket)| [PROD](https://junior.barrycumbie.com/) | [dev](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/dev) | [DEV](https://fullstack-practice2.onrender.com)| [docs](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/tree/main/docs) | [CI/CD workflow](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/blob/main/.github/workflows/deploy-main-to-gcp.yml) | [successful PROD deployment](https://github.com/ChickenAlfredo1121/fullstack-brain-bucket/actions/runs/38272880417)
 
 
 ### HOTEL grading dashboard
